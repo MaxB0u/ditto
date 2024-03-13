@@ -53,23 +53,23 @@
 
 header_type custom_metadata_t {
     fields {
-        needs_obfuscation:      1;  // 1 if the packet needs to be obfuscated
-                                    // otherwise just forward it 
-                                    // (e.g. for circulated chaff traffic)
+        needs_obfuscation: 2;   // 1 if the packet needs to be obfuscated
+                                // otherwise just forward it 
+                                // (e.g. for circulated chaff traffic)
 
-        needs_deobfuscation:    1;  // 1 if the packet needs to be de-obfuscated
+        needs_deobfuscation: 2; // 1 if the packet needs to be de-obfuscated
 
-        traffic_type:           4;  // 1 = real traffic; 2 = chaff traffic 
+        traffic_type: 4;        // 1 = real traffic; 2 = chaff traffic 
 
-        target_size:           16;  // target size of the obfuscated packet in B
+        packet_iterator: 8;     // number each packet according to a
+                                // cyclic pattern for load balancing
 
-        bytes_to_add:          12;  // number of padding bytes to add
+        bytes_to_add: 16;       // number of padding bytes to add
 
-        tmp_add_bytes:         16;  // temporary value for workaround
-                                    // to check if the packt is too big
+        target_size: 16;        // target size of the obfuscated packet in B
 
-        packet_iterator:        8;  // number each packet according to a
-                                    // cyclic pattern for load balancing
+        tmp_add_bytes: 16;      // temporary value for workaround
+                                // to check if the packt is too big
     }
 }
 metadata custom_metadata_t custom_metadata;

@@ -6,7 +6,7 @@ from os import listdir
 from os.path import isfile, join
 import yaml
 
-from get_logger import setup_logging
+from labsetup_public.src.get_logger import setup_logging
 log = logging.getLogger(__name__)
 setup_logging()
 

@@ -32,7 +32,7 @@ class PatternCodeGenerator(object):
         if target in "device model".split():
             self.target=target
         else:
-            print "unsupported target"
+            print("unsupported target")
             exit(1)
         
         self.port_configuration = device_configuration
@@ -43,7 +43,7 @@ class PatternCodeGenerator(object):
         self.code = {part: [] for part in self.code_parts}
 
         self.config = {
-            "pads"                  : [32,16,8,4,2,1],
+            "pads"                  : [4,2,1],
             "pattern_sequence"      : device_configuration["pattern"],
             "obfuscation_device"    : device,
         }
@@ -236,8 +236,8 @@ class PatternCodeGenerator(object):
         print the entire generated code
         """
         for p in self.code_parts:
-            print p
-            print "\n".join(self.code[p])
+            print(p)
+            print("\n".join(self.code[p]))
     
     def write_code_to_file(self,filepath):
         """
@@ -271,7 +271,7 @@ class PatternCodeGenerator(object):
             "constants": self.constants,
             "state_index_to_port": self.state_index_to_port,
             "ports_cloning": self.get_internal_ports(self.get_ports("fake_traffic".split())),
-            "ports_priorityqueues": self.state_index_to_port.values(),
+            "ports_priorityqueues": list(self.state_index_to_port.values()),
             "ports_rrqueues": self.get_internal_ports(self.get_ports("output".split())),
             
             # "port_configuration": self.port_configuration,
@@ -558,7 +558,8 @@ header evaluation_meta_t evaluation_meta;"
         
         state_to_iterators = {k:{"size":self.config["pattern_sequence"][k], "iterators":[]} for k in range(len(self.config["pattern_sequence"]))}
         for p in set(self.config["pattern_sequence"]):
-            indices = [k for (k,v) in filter(lambda (k,v): v["size"]==p, state_to_iterators.items())]
+            #indices = [k for (k,v) in filter(lambda (k,v): v["size"]==p, state_to_iterators.items())]
+            indices = [kv[0] for kv in filter(lambda kv: kv[1]["size"]==p, state_to_iterators.items())]
             for i in range(len(self.config["pattern_sequence"])):
                 state_to_iterators[indices[i%len(indices)]]["iterators"].append(i)
         
