@@ -43,7 +43,7 @@ class PatternCodeGenerator(object):
         self.code = {part: [] for part in self.code_parts}
 
         self.config = {
-            "pads"                  : [4,2,1],
+            "pads"                  : [32,16,8,4,2,1],
             "pattern_sequence"      : device_configuration["pattern"],
             "obfuscation_device"    : device,
         }
