@@ -19,7 +19,7 @@ print("device name %s" % device_name)
 
 
 # -------------------------- read config ----------------------
-script_path = "/home/tofino/ditto/p4/traffic_pattern_tofino/"
+script_path = "/home/wedge100bf/max/ditto/p4/traffic_pattern_tofino/"
 
 infodict_path = script_path+'pd_rpc_info_%s.json' % device_name
 
@@ -83,7 +83,7 @@ for port,sid in zip(swports, sids):
                             True,
                             egr_port_queue = 0)
 
-    if device_name == "tofino1":
+    if device_name == "tofino":
         mirror.session_create(info, sess_hdl=shdl, dev_tgt=dt)
     else:
         mirror.session_create(shdl, dt, info)
@@ -138,7 +138,7 @@ for port in ports:
 for (state_index, port) in info_dict["state_index_to_port"].items():
     state_index = int(state_index)
     margin = .01 # safety margin for rate to avoid congesting the rr queues
-    rate = 100000000. / sum(info_dict["config"]["pattern_sequence"]) * info_dict["config"]["pattern_sequence"][state_index] * (1-margin)
+    rate = int(100000000. / sum(info_dict["config"]["pattern_sequence"]) * info_dict["config"]["pattern_sequence"][state_index] * (1-margin))
 
     print("configure rate %i for port %i" % (rate, port))
     tm.thrift.tm_enable_port_shaping(dev_id, port)
