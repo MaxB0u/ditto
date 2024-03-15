@@ -39,7 +39,7 @@ class PatternCodeGenerator(object):
 
         self.lab_config = get_config("../../labsetup_public/config/")
 
-        self.code_parts = "CLI TOP HEADERS METADATA PARSER REGISTERS ACTIONS INGRESS EGRESS".split()
+        self.code_parts = "CLI_PM CLI_PD TOP HEADERS METADATA PARSER REGISTERS ACTIONS INGRESS EGRESS".split()
         self.code = {part: [] for part in self.code_parts}
 
         self.config = {
@@ -255,12 +255,11 @@ class PatternCodeGenerator(object):
         f.close()
         self.generated_files.append(filepath)
     
-    def write_cli_to_file(self,filepath):
+    def write_cli_to_file(self,p,filepath):
         """
         writes only the CLI input to a file
         """
         f = open(filepath, "w")
-        p = "CLI"
         f.write("\n".join(self.code[p]))
         f.close()
         self.generated_files.append(filepath)
@@ -487,7 +486,7 @@ header evaluation_meta_t evaluation_meta;"
             self.add_to_part(part,code)
     
     def generate_cli_forwarding(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
         
         output_port = self.get_internal_ports(self.port_configuration["output"])
@@ -503,7 +502,7 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
     
     def generate_cli_cloning(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
         
         output_port = self.port_configuration["output"]
@@ -515,7 +514,7 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
         
     def generate_ucli_ports(self):
-        part = "CLI"
+        part = "CLI_PM"
         code = ""
         
         if self.target == "device":
@@ -539,7 +538,7 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
         
     def generate_ucli_rate_monitor(self):
-        part = "CLI"
+        part = "CLI_PM"
         code = ""
         
         if self.target == "device":
@@ -552,7 +551,7 @@ header evaluation_meta_t evaluation_meta;"
         
     
     def generate_cli_assign_queue(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
         priority = 0
         
@@ -618,7 +617,7 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
     
     def generate_cli_type(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
         
         for port in self.get_internal_ports(self.get_ports("input".split())):
@@ -633,7 +632,7 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
     
     def generate_cli_padding_meta_next_etherType(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
 
         priority = 0
@@ -648,7 +647,7 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
     
     def generate_cli_padding_tables(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
 
         for p in self.config["pads"]:
@@ -676,21 +675,21 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
     
     def generate_cli_recirculation(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = "\npd recirculation_decision add_entry _NoAction custom_metadata_bytes_to_add_start 0x0 custom_metadata_bytes_to_add_end %s priority 0x1" % (hex(self.constants["MAX_PADDING_BYTES"]))
         code += "\n"
         
         self.add_to_part(part,code)
     
     def generate_cli_toobig(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = "\npd ignore_toobigpackets add_entry _NoAction padding_meta_origLen_start 0 padding_meta_origLen_end %s priority 0x1" % (hex(self.constants["MAX_PACKET_SIZE"]-14-1))
         code += "\n"
         
         self.add_to_part(part,code)
     
     def generate_cli_packet_iterator(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
         
         for port in self.get_internal_ports(self.get_ports("input fake_traffic priorityqueuing_in".split())):
@@ -700,7 +699,7 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
     
     def generate_cli_deobf_blocklist(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
         
         traffictypes = [2]
@@ -711,7 +710,7 @@ header evaluation_meta_t evaluation_meta;"
         self.add_to_part(part,code)
     
     def generate_cli_deobf_determine_ethertype(self):
-        part = "CLI"
+        part = "CLI_PD"
         code = ""
 
         bytes_start = 1
@@ -725,8 +724,7 @@ header evaluation_meta_t evaluation_meta;"
         
         self.add_to_part(part,code)
     
-    def generate_cli_addlines(self,code):
-        part = "CLI"
+    def generate_cli_addlines(self,part,code):
         self.add_to_part(part,code)
     
     
@@ -746,13 +744,13 @@ header evaluation_meta_t evaluation_meta;"
         self.generate_code_apply_padding_tables()
 
         # ucli input
-        self.generate_cli_addlines("ucli")
+        self.generate_cli_addlines("CLI_PM", "ucli")
         self.generate_ucli_ports()
         self.generate_ucli_rate_monitor()
-        self.generate_cli_addlines("end")
+        self.generate_cli_addlines("CLI_PM", "end")
         
         # bfshell input
-        self.generate_cli_addlines("pd-traffic-pattern-tofino")
+        self.generate_cli_addlines("CLI_PD", "pd-traffic-pattern-tofino")
 
         self.generate_cli_forwarding()
         self.generate_cli_cloning()
@@ -766,7 +764,7 @@ header evaluation_meta_t evaluation_meta;"
         self.generate_cli_deobf_determine_ethertype()
         self.generate_cli_deobf_blocklist()
                 
-        self.generate_cli_addlines("end")
+        self.generate_cli_addlines("CLI_PD", "end")
 
 
 def parse_args(args):
@@ -814,7 +812,7 @@ def main(args):
     code_directory = "../../p4/traffic_pattern_tofino/"
 
     device_configuration = {
-        "tofino1": { 
+        "tofino": { 
             #use physical port numbers
             "target"              : "device",
             "connected_server"    : "src",
@@ -828,7 +826,7 @@ def main(args):
             "fake_traffic"        : [3, 4, 5],
             "recirculation"       : 31, 
         },
-        "tofino2": { 
+        "ubuntu-wedge100bf": { 
             #use physical port numbers
             "target"              : "device",
             "connected_server"    : "dst",
@@ -844,7 +842,7 @@ def main(args):
         },
     }
 
-    for device in "tofino1 tofino2".split():
+    for device in "tofino ubuntu-wedge100bf".split():
         log.info("generating code for %s" % device)
         configuration = device_configuration[device]
 
@@ -855,7 +853,8 @@ def main(args):
         pcg.write_device_specific_info_to_file(os.path.join(code_directory,"pd_rpc_info_%s.json" % device))
 
         # pcg.write_device_specific_info_to_file(os.path.join(code_directory,"server_info_%s.json" % configuration["connected_server"]))
-        pcg.write_cli_to_file(os.path.join(code_directory,"bfshell_input_%s.txt" % device))
+        pcg.write_cli_to_file("CLI_PM", os.path.join(code_directory,"bfshell_input_%s_%s.txt" % (device, "ports")))
+        pcg.write_cli_to_file("CLI_PD", os.path.join(code_directory,"bfshell_input_%s_%s.txt" % (device, "tables")))
 
         log.info(pcg.generated_files)
         log.info("MAX_PADDING_BYTES: %i" % pcg.constants["MAX_PADDING_BYTES"])

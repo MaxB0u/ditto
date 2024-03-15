@@ -1,6 +1,6 @@
 devices:
-  tofino2:
-    name: "tofino2"
+  ubuntu-wedge100bf:
+    name: "ubuntu-wedge100bf"
     type: "tofino"
 
     ports:

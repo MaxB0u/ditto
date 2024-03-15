@@ -1,6 +1,6 @@
 devices:
-  tofino1:
-    name: "tofino1"
+  tofino:
+    name: "tofino"
     type: "tofino"
 
     ports:

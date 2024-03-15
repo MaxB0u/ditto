@@ -1,9 +1,9 @@
 cables:
   - source:
-      device: "tofino1"
+      device: "tofino"
       port: "2/-"
     destination:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "2/-"
     type: "qsfp"
 
@@ -11,7 +11,7 @@ cables:
       device: "tofino3"
       port: "2/-"
     destination:
-      device: "tofino1"
+      device: "tofino"
       port: "2/-"
     type: "qsfp"
 
@@ -19,7 +19,7 @@ cables:
       device: "tofino3"
       port: "3/-"
     destination:
-      device: "tofino1"
+      device: "tofino"
       port: "3/-"
     type: "qsfp"
 
@@ -27,7 +27,7 @@ cables:
       device: "tofino3"
       port: "4/-"
     destination:
-      device: "tofino1"
+      device: "tofino"
       port: "4/-"
     type: "qsfp"
 
@@ -35,7 +35,7 @@ cables:
       device: "tofino3"
       port: "5/-"
     destination:
-      device: "tofino1"
+      device: "tofino"
       port: "5/-"
     type: "qsfp"
 
@@ -43,7 +43,7 @@ cables:
       device: "tofino3"
       port: "6/-"
     destination:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "3/-"
     type: "qsfp"
 
@@ -51,7 +51,7 @@ cables:
       device: "tofino3"
       port: "7/-"
     destination:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "4/-"
     type: "qsfp"
 
@@ -59,7 +59,7 @@ cables:
       device: "tofino3"
       port: "8/-"
     destination:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "5/-"
     type: "qsfp"
 
@@ -67,49 +67,49 @@ cables:
 
 
   - source:
-      device: "tofino1"
+      device: "tofino"
       port: "27/-"
     destination:
-      device: "tofino1"
+      device: "tofino"
       port: "28/-"
     type: "qsfp"
 
   - source:
-      device: "tofino1"
+      device: "tofino"
       port: "29/-"
     destination:
-      device: "tofino1"
+      device: "tofino"
       port: "30/-"
     type: "qsfp"
 
   - source:
-      device: "tofino1"
+      device: "tofino"
       port: "31/-"
     destination:
-      device: "tofino1"
+      device: "tofino"
       port: "32/-"
     type: "qsfp"
 
   - source:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "27/-"
     destination:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "28/-"
     type: "qsfp"
 
   - source:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "29/-"
     destination:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "30/-"
     type: "qsfp"
 
   - source:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "31/-"
     destination:
-      device: "tofino2"
+      device: "ubuntu-wedge100bf"
       port: "32/-"
     type: "qsfp"

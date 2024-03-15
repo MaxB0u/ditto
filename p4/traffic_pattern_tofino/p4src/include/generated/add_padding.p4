@@ -1,11 +1,11 @@
 // AUTOMATICALLY GENERATED FILE -- DO NOT EDIT MANUALLY
-// generated: 2024-03-13 16:31:54
+// generated: 2024-03-15 13:58:10
 
 
 
 
-#ifdef IN_SECTION_CLI
-// ************************** CLI *********************
+#ifdef IN_SECTION_CLI_PM
+// ************************** CLI_PM *********************
 
 ucli
 
@@ -45,6 +45,11 @@ pm rate-show
 
 
 end
+
+#endif
+
+#ifdef IN_SECTION_CLI_PD
+// ************************** CLI_PD *********************
 
 pd-traffic-pattern-tofino
 
