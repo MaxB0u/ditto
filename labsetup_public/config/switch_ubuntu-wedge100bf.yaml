@@ -165,6 +165,11 @@ devices:
           phys: 32
           internal: 140
           pipe: 3
+      33/-:
+          name: "33/-"
+          phys: 33
+          internal: 64
+          pipe: 3
 
 
       1/0:
@@ -806,4 +811,24 @@ devices:
           name: "32/3"
           phys: 32
           internal: 143
+          pipe: 3
+      33/0:
+          name: "33/0"
+          phys: 33
+          internal: 64
+          pipe: 3
+      33/1:
+          name: "33/1"
+          phys: 33
+          internal: 65
+          pipe: 3
+      33/2:
+          name: "33/2"
+          phys: 33
+          internal: 66
+          pipe: 3
+      33/3:
+          name: "33/3"
+          phys: 33
+          internal: 67
           pipe: 3

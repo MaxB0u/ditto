@@ -20,13 +20,13 @@ pm port-add 31/- 100G NONE
 pm port-enb 31/- 
 pm port-add 1/- 100G NONE 
 pm port-enb 1/- 
-pm port-add 27/- 100G NONE 
+pm port-add 27/- 10G NONE 
 pm port-enb 27/- 
-pm port-add 28/- 100G NONE 
+pm port-add 28/- 10G NONE 
 pm port-enb 28/- 
-pm port-add 29/- 100G NONE 
+pm port-add 29/- 10G NONE 
 pm port-enb 29/- 
-pm port-add 30/- 100G NONE 
+pm port-add 30/- 10G NONE 
 pm port-enb 30/- 
 pm show
 

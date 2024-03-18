@@ -2,10 +2,10 @@ ucli
 
 pm port-add 1/- 100G NONE 
 pm port-enb 1/- 
-pm port-add 32/- 100G NONE 
-pm port-enb 32/- 
-pm port-add 2/- 100G NONE 
-pm port-enb 2/- 
+pm port-add 33/2 10G NONE 
+pm port-enb 33/2 
+pm port-add 33/0 10G NONE 
+pm port-enb 33/0 
 pm port-add 3/- 100G NONE 
 pm port-enb 3/- 
 pm port-add 4/- 100G NONE 
@@ -20,13 +20,13 @@ pm port-add 31/- 100G NONE
 pm port-enb 31/- 
 pm port-add 1/- 100G NONE 
 pm port-enb 1/- 
-pm port-add 27/- 100G NONE 
+pm port-add 27/- 10G NONE 
 pm port-enb 27/- 
-pm port-add 28/- 100G NONE 
+pm port-add 28/- 10G NONE 
 pm port-enb 28/- 
-pm port-add 29/- 100G NONE 
+pm port-add 29/- 10G NONE 
 pm port-enb 29/- 
-pm port-add 30/- 100G NONE 
+pm port-add 30/- 10G NONE 
 pm port-enb 30/- 
 pm show
 

@@ -1,5 +1,5 @@
 // AUTOMATICALLY GENERATED FILE -- DO NOT EDIT MANUALLY
-// generated: 2024-03-15 13:58:10
+// generated: 2024-03-15 16:41:45
 
 
 
@@ -11,10 +11,10 @@ ucli
 
 pm port-add 1/- 100G NONE 
 pm port-enb 1/- 
-pm port-add 32/- 100G NONE 
-pm port-enb 32/- 
-pm port-add 2/- 100G NONE 
-pm port-enb 2/- 
+pm port-add 33/2 10G NONE 
+pm port-enb 33/2 
+pm port-add 33/0 10G NONE 
+pm port-enb 33/0 
 pm port-add 3/- 100G NONE 
 pm port-enb 3/- 
 pm port-add 4/- 100G NONE 
@@ -29,13 +29,13 @@ pm port-add 31/- 100G NONE
 pm port-enb 31/- 
 pm port-add 1/- 100G NONE 
 pm port-enb 1/- 
-pm port-add 27/- 100G NONE 
+pm port-add 27/- 10G NONE 
 pm port-enb 27/- 
-pm port-add 28/- 100G NONE 
+pm port-add 28/- 10G NONE 
 pm port-enb 28/- 
-pm port-add 29/- 100G NONE 
+pm port-add 29/- 10G NONE 
 pm port-enb 29/- 
-pm port-add 30/- 100G NONE 
+pm port-add 30/- 10G NONE 
 pm port-enb 30/- 
 pm show
 
@@ -53,10 +53,10 @@ end
 
 pd-traffic-pattern-tofino
 
-pd fwd_port add_entry forward_and_obfuscate ig_intr_md_ingress_port 0xac action_egress_port 0x88 
-pd fwd_port add_entry forward_and_obfuscate ig_intr_md_ingress_port 0xa4 action_egress_port 0x88 
-pd fwd_port add_entry forward_and_obfuscate ig_intr_md_ingress_port 0x94 action_egress_port 0x88 
-pd fwd_port add_entry forward_and_obfuscate ig_intr_md_ingress_port 0x9c action_egress_port 0x88 
+pd fwd_port add_entry forward_and_obfuscate ig_intr_md_ingress_port 0xac action_egress_port 0x40 
+pd fwd_port add_entry forward_and_obfuscate ig_intr_md_ingress_port 0xa4 action_egress_port 0x40 
+pd fwd_port add_entry forward_and_obfuscate ig_intr_md_ingress_port 0x94 action_egress_port 0x40 
+pd fwd_port add_entry forward_and_obfuscate ig_intr_md_ingress_port 0x9c action_egress_port 0x40 
 pd fwd_port add_entry forward_and_deobfuscate ig_intr_md_ingress_port 0x88 action_egress_port 0x80 
 pd fwd_port add_entry forward_and_deobfuscate ig_intr_md_ingress_port 0x84 action_egress_port 0x80 
 
@@ -69,21 +69,21 @@ pd clone_port add_entry clone_to_port ig_intr_md_ingress_port 0xa0 action_sessio
 
 
 pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x1 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x0 padding_meta_totalLen_end 0x203 custom_metadata_packet_iterator 0x0 priority 0x0 action_egress_port 0xac action_state_index 0x0 action_qid 0x1 action_target_size 0x215 
-pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x1 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x203 padding_meta_totalLen_end 0x418 custom_metadata_packet_iterator 0x0 priority 0x1 action_egress_port 0xa4 action_state_index 0x1 action_qid 0x1 action_target_size 0x42a 
-pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x1 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x418 padding_meta_totalLen_end 0x62e custom_metadata_packet_iterator 0x0 priority 0x2 action_egress_port 0x94 action_state_index 0x2 action_qid 0x1 action_target_size 0x640 
+pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x1 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x203 padding_meta_totalLen_end 0x418 custom_metadata_packet_iterator 0x0 priority 0x1 action_egress_port 0xad action_state_index 0x1 action_qid 0x1 action_target_size 0x42a 
+pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x1 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x418 padding_meta_totalLen_end 0x62e custom_metadata_packet_iterator 0x0 priority 0x2 action_egress_port 0xae action_state_index 0x2 action_qid 0x1 action_target_size 0x640 
 pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x2 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x0 padding_meta_totalLen_end 0x203 custom_metadata_packet_iterator 0x0 priority 0x3 action_egress_port 0xac action_state_index 0x0 action_qid 0x0 action_target_size 0x215 
-pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x2 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x203 padding_meta_totalLen_end 0x418 custom_metadata_packet_iterator 0x0 priority 0x4 action_egress_port 0xa4 action_state_index 0x1 action_qid 0x0 action_target_size 0x42a 
-pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x2 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x418 padding_meta_totalLen_end 0x62e custom_metadata_packet_iterator 0x0 priority 0x5 action_egress_port 0x94 action_state_index 0x2 action_qid 0x0 action_target_size 0x640 
-pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x1 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x117 padding_meta_totalLen_end 0x215 custom_metadata_packet_iterator 0x0 priority 0x6 action_egress_port 0x88 action_qid 0x0 
-pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x1 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x32c padding_meta_totalLen_end 0x42a custom_metadata_packet_iterator 0x0 priority 0x7 action_egress_port 0x88 action_qid 0x1 
-pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x1 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x542 padding_meta_totalLen_end 0x640 custom_metadata_packet_iterator 0x0 priority 0x8 action_egress_port 0x88 action_qid 0x2 
-pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x2 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x117 padding_meta_totalLen_end 0x215 custom_metadata_packet_iterator 0x0 priority 0x9 action_egress_port 0x88 action_qid 0x0 
-pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x2 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x32c padding_meta_totalLen_end 0x42a custom_metadata_packet_iterator 0x0 priority 0xa action_egress_port 0x88 action_qid 0x1 
-pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x2 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x542 padding_meta_totalLen_end 0x640 custom_metadata_packet_iterator 0x0 priority 0xb action_egress_port 0x88 action_qid 0x2 
+pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x2 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x203 padding_meta_totalLen_end 0x418 custom_metadata_packet_iterator 0x0 priority 0x4 action_egress_port 0xad action_state_index 0x1 action_qid 0x0 action_target_size 0x42a 
+pd assign_to_queue add_entry set_state_properties_priority padding_meta_traffic_type 0x2 padding_meta_instance_type 0x1 padding_meta_totalLen_start 0x418 padding_meta_totalLen_end 0x62e custom_metadata_packet_iterator 0x0 priority 0x5 action_egress_port 0xae action_state_index 0x2 action_qid 0x0 action_target_size 0x640 
+pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x1 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x117 padding_meta_totalLen_end 0x215 custom_metadata_packet_iterator 0x0 priority 0x6 action_egress_port 0x40 action_qid 0x0 
+pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x1 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x32c padding_meta_totalLen_end 0x42a custom_metadata_packet_iterator 0x0 priority 0x7 action_egress_port 0x40 action_qid 0x1 
+pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x1 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x542 padding_meta_totalLen_end 0x640 custom_metadata_packet_iterator 0x0 priority 0x8 action_egress_port 0x40 action_qid 0x2 
+pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x2 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x117 padding_meta_totalLen_end 0x215 custom_metadata_packet_iterator 0x0 priority 0x9 action_egress_port 0x40 action_qid 0x0 
+pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x2 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x32c padding_meta_totalLen_end 0x42a custom_metadata_packet_iterator 0x0 priority 0xa action_egress_port 0x40 action_qid 0x1 
+pd assign_to_queue add_entry set_state_properties_roundrobin padding_meta_traffic_type 0x2 padding_meta_instance_type 0x2 padding_meta_totalLen_start 0x542 padding_meta_totalLen_end 0x640 custom_metadata_packet_iterator 0x0 priority 0xb action_egress_port 0x40 action_qid 0x2 
 
 
 pd traffic_type add_entry set_traffic_type ig_intr_md_ingress_port 0x80 action_traffic_type 0x1 action_instance_type 0x1 action_needs_obfuscation 0x1 
-pd traffic_type add_entry set_traffic_type ig_intr_md_ingress_port 0x8c action_traffic_type 0x1 action_instance_type 0x1 action_needs_obfuscation 0x1 
+pd traffic_type add_entry set_traffic_type ig_intr_md_ingress_port 0x42 action_traffic_type 0x1 action_instance_type 0x1 action_needs_obfuscation 0x1 
 pd traffic_type add_entry set_instance_type ig_intr_md_ingress_port 0xac action_instance_type 0x2 action_needs_obfuscation 0x1 
 pd traffic_type add_entry set_instance_type ig_intr_md_ingress_port 0xa4 action_instance_type 0x2 action_needs_obfuscation 0x1 
 pd traffic_type add_entry set_instance_type ig_intr_md_ingress_port 0x94 action_instance_type 0x2 action_needs_obfuscation 0x1 
@@ -95,7 +95,7 @@ pd traffic_type add_entry set_traffic_type ig_intr_md_ingress_port 0xa0 action_t
 
 
 pd packet_iterator add_entry update_packet_iterator ig_intr_md_ingress_port 0x80
-pd packet_iterator add_entry update_packet_iterator ig_intr_md_ingress_port 0x8c
+pd packet_iterator add_entry update_packet_iterator ig_intr_md_ingress_port 0x42
 pd packet_iterator add_entry update_packet_iterator ig_intr_md_ingress_port 0x90
 pd packet_iterator add_entry update_packet_iterator ig_intr_md_ingress_port 0x98
 pd packet_iterator add_entry update_packet_iterator ig_intr_md_ingress_port 0xa0
@@ -247,7 +247,7 @@ end
 #define INSTANCE_DONE 3
 #define PADDING_META_LEN 18
 #define MTU 1600
-#define TARGET_BW 100
+#define TARGET_BW 10
 #define PATTERN_LENGTH 3
 #define NUM_QUEUES 3
 #define NUM_QUEUES_MINUS_1 2
@@ -278,7 +278,7 @@ end
 #define ETHERTYPE_4B_PADS_INSTANCETYPE_3 32835
 #define ETHERTYPE_2B_PADS_INSTANCETYPE_3 32851
 #define ETHERTYPE_1B_PADS_INSTANCETYPE_3 147
-#define BW_PER_QUEUE 100
+#define BW_PER_QUEUE 10
 
 #endif
 

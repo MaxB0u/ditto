@@ -85,7 +85,10 @@ class PatternCodeGenerator(object):
             # network settings
             "MTU"                       : 1600, # B
             # "MTU"                       : 1500,
-            "TARGET_BW"                 : 100, # Gbps
+            "TARGET_BW"                 : 10, # Gbps
+
+            # CPU PORT
+            #"CPU_PORT"                  : 33
         }
 
         self.constants["PATTERN_LENGTH"] = len(self.config["pattern_sequence"])
@@ -523,7 +526,6 @@ header evaluation_meta_t evaluation_meta;"
             # normal ports
             for phys_port in self.get_ports("input output fake_traffic recirculation obf_input obf_output".split()):
 
-
                 code += "pm port-add %s %s NONE \n" % (self.phys_port_to_str(phys_port),self.phys_port_to_speed(phys_port))
                 code += "pm port-enb %s \n" % (self.phys_port_to_str(phys_port))
             
@@ -531,11 +533,26 @@ header evaluation_meta_t evaluation_meta;"
             for phys_port in  self.get_ports("priorityqueuing_out".split()):
                 code += "pm port-add %i/- %iG NONE \n" % (phys_port,self.constants["BW_PER_QUEUE"])
                 code += "pm port-enb %i/- \n" % (phys_port)
-            
+
             code += "pm show\n"
             # code += "end\n"
         
         self.add_to_part(part,code)
+
+    def generate_cpu_port(self):
+        part = "CLI_PM"
+        code = ""
+
+        # For cpu port need to bring it up at 10G (right now port 64, use 33/2 for port 66)
+        code += "\npm port-del 33/0 \n"
+        code += "pm port-add 33/0 10G NONE \n"
+        code += "pm an-set 33/0 1 \n"
+        code += "pm port-enb 33/0 \n"
+
+        code += "pm show\n\n"      
+
+        self.add_to_part(part,code)     
+
         
     def generate_ucli_rate_monitor(self):
         part = "CLI_PM"
@@ -748,6 +765,10 @@ header evaluation_meta_t evaluation_meta;"
         self.generate_ucli_ports()
         self.generate_ucli_rate_monitor()
         self.generate_cli_addlines("CLI_PM", "end")
+        #if self.constants["CPU_PORT"] == self.port_configuration["output"]:
+        #    self.generate_cli_addlines("CLI_PM", "ucli")
+        #    self.generate_cpu_port()
+        #    self.generate_cli_addlines("CLI_PM", "end")
         
         # bfshell input
         self.generate_cli_addlines("CLI_PD", "pd-traffic-pattern-tofino")
@@ -831,8 +852,8 @@ def main(args):
             "target"              : "device",
             "connected_server"    : "dst",
             "pattern"             : pattern,
-            "input"               : [1, 32],
-            "output"              : 2,
+            "input"               : [1,"33/2"], #[1, 32],
+            "output"              : "33/0",
             "obf_input"           : [2, 31], # obfuscated traffic input -> will be deobfuscated
             "obf_output"          : 1, # output port for deobfuscated traffic
             "priorityqueuing_out" : [27, 28, 29, 30],
